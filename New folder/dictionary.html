@@ -1,0 +1,85 @@
+<!--<!DOCTYPE html>
+<html>
+<head>
+	<title>Dictionary App</title>
+	<link rel="stylesheet" type="text/css" href="dictionary.css">
+	<script src="dictionary.js" type="text/javascript"></script>
+</head>
+<body>
+	<div id="container">
+		<div class="contains">
+		<input type="text" name="text" id="text">
+		<button onclick="meaning()"id="speak">speak</button>
+	</div>
+	<div class="defs">
+		<h5 class="words"></h5>
+		<h6 class="type"></h6>
+		<p class="defs"></p>
+	</div>
+	<script type="text/javascript">
+		const meaning = () =>{
+			let word = document.querySelector("#text").value;
+			fetch('https://definitionapi.cf/'+ word).then(res=>res.json()).then(data=> {
+				let wording = document.querySelector(".words")
+				let type = document.querySelector(".type")
+				let defs = document.querySelector(".defs")
+				if (data.word == undefined) {
+					wording.innerHTML = data.error
+				}
+				else{
+					wording.innerHTML = data.word
+					type.innerHTML = data.type
+					data.definitionforEach(defs)
+				}
+			})
+		}
+
+	</script>
+</body>
+</html>
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Dictionary</title>
+    <link rel="stylesheet" href="dictionary.css">
+</head>
+
+<body>
+
+    <section>
+        <form class="searchForm">
+            <h1>Word Dictionary</h1>
+            <input type="search" name="searchBox" id="searchBox" placeholder="word to search">
+            <input type="button" name="submit" value="submit" onclick="wordSearch()">
+            <input type="reset" value="reset" onclick="reloadPage()">
+        </form>
+
+        <div class="searchResult" id="searchResult">
+            <div>
+                <h1>Word</h1>
+                <p id="word"></p>
+            </div>
+            <div>
+                <h1>Definition</h1>
+                <p id="definition"></p>
+            </div>
+            <div>
+                <h1>Example</h1>
+                <p id="example"></p>
+            </div>
+            <div>
+                <h1>How To Spell?</h1>
+                <p id="spell"></p>
+            </div>
+        </div>
+    </section>
+
+    <script src="dictionary.js"></script>
+
+</body>
+
+</html>
